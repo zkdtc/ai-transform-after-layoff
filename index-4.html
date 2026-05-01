@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>被裁后的 AI · 用 AI 重写你的下一份工作</title>
+<meta name="description" content="为科技行业被裁人员设计的 8-12 周 AI 转型陪跑：AI 改简历、30 家科技公司内推、AI 针对性课程、AI 项目辅导、面试指导。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..600,30..100&family=Noto+Serif+SC:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #F1EBE0;
+    --bg-warm: #ECE4D5;
+    --paper: #F8F4EC;
+    --ink: #1A1814;
+    --ink-soft: #3D3833;
+    --ink-muted: #7A7068;
+    --rule: #C9BFAC;
+    --rule-soft: #DCD2BE;
+    --accent: #A8421C;
+    --accent-deep: #7E2F12;
+    --accent-soft: #E8D5C5;
+
+    --dark-bg: #181613;
+    --dark-paper: #221E1A;
+    --dark-rule: #3A332D;
+    --dark-text: #E8DFCF;
+    --dark-text-muted: #A39685;
+    --dark-accent: #E89B6C;
+
+    --serif-cn: "Noto Serif SC", "Songti SC", "STSong", serif;
+    --serif: "Fraunces", "Noto Serif SC", Georgia, serif;
+    --mono: "JetBrains Mono", "SF Mono", monospace;
+    --tracked: 0.18em;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--serif-cn);
+    font-size: 17px;
+    line-height: 1.75;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  .container-narrow { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+
+  .topbar {
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.5px solid var(--rule);
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .wordmark-group { display: flex; flex-direction: column; gap: 2px; }
+  .wordmark {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    font-style: italic;
+  }
+  .wordmark .dot { color: var(--accent); }
+  .wordmark-sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+    text-transform: lowercase;
+  }
+  .nav-cta {
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--ink);
+    background: transparent;
+    border: 0.5px solid var(--ink);
+    padding: 8px 18px;
+    text-decoration: none;
+    border-radius: 1px;
+    transition: all 0.2s;
+  }
+  .nav-cta:hover { background: var(--ink); color: var(--paper); }
+
+  .hero {
+    padding: 80px 0 100px;
+    border-bottom: 0.5px solid var(--rule);
+    position: relative;
+  }
+
+  .eyebrow {
+    font-family: var(--serif);
+    font-size: 11px;
+    letter-spacing: var(--tracked);
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.1s ease-out forwards;
+  }
+  .eyebrow::before { content: ''; width: 36px; height: 0.5px; background: var(--accent); }
+
+  h1 {
+    font-family: var(--serif-cn);
+    font-size: clamp(36px, 6vw, 68px);
+    line-height: 1.18;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin-bottom: 32px;
+    max-width: 16ch;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.25s ease-out forwards;
+  }
+  h1 .em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  h1 .strike {
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+    text-decoration-color: var(--accent);
+    color: var(--ink-muted);
+    font-weight: 400;
+  }
+
+  .subhead {
+    font-size: 19px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 42ch;
+    margin-bottom: 44px;
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.45s ease-out forwards;
+  }
+
+  .signup {
+    display: flex;
+    gap: 0;
+    max-width: 520px;
+    background: var(--paper);
+    border: 0.5px solid var(--rule);
+    border-radius: 2px;
+    padding: 6px;
+    transition: border-color 0.2s;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s ease-out forwards;
+  }
+  .signup:focus-within { border-color: var(--ink); }
+  .signup input {
+    flex: 1;
+    padding: 14px 16px;
+    border: none;
+    background: transparent;
+    font-family: var(--serif-cn);
+    font-size: 16px;
+    color: var(--ink);
+    outline: none;
+    min-width: 0;
+  }
+  .signup input::placeholder { color: var(--ink-muted); font-weight: 300; }
+  .signup button {
+    padding: 14px 24px;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    font-family: var(--serif);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    border-radius: 1px;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .signup button:hover { background: var(--accent); }
+
+  .signup-note {
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--ink-muted);
+    font-family: var(--serif);
+    font-style: italic;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.75s ease-out forwards;
+  }
+  .signup-note .count { color: var(--accent); font-weight: 500; font-style: normal; }
+
+  .signup-success {
+    display: none;
+    padding: 24px 28px;
+    background: var(--accent-soft);
+    border-left: 2px solid var(--accent);
+    color: var(--accent-deep);
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 520px;
+  }
+  .signup-success.show { display: block; }
+  .signup-success strong { display: block; margin-bottom: 6px; font-weight: 500; }
+
+  .hero-card {
+    position: absolute;
+    right: 32px;
+    top: 100px;
+    width: 240px;
+    background: var(--paper);
+    border: 0.5px solid var(--rule);
+    padding: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.9s ease-out forwards;
+    transform: rotate(1.5deg);
+  }
+  .hero-card-label {
+    font-family: var(--serif);
+    font-size: 10px;
+    letter-spacing: var(--tracked);
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 14px;
+  }
+  .hero-card-stat {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 36px;
+    color: var(--accent);
+    line-height: 1;
+    font-weight: 400;
+    margin-bottom: 12px;
+  }
+  .hero-card-text {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 1024px) { .hero-card { display: none; } }
+
+  .section { padding: 100px 0; border-bottom: 0.5px solid var(--rule); }
+
+  .section-label {
+    font-family: var(--serif);
+    font-size: 11px;
+    letter-spacing: var(--tracked);
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .section-label .num { font-style: italic; color: var(--accent); font-size: 13px; }
+
+  h2 {
+    font-family: var(--serif-cn);
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.25;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    margin-bottom: 32px;
+    max-width: 22ch;
+  }
+  h2 .em {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .problem-lead {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    padding-left: 24px;
+    border-left: 2px solid var(--accent);
+    max-width: 38em;
+    margin-bottom: 56px;
+    font-weight: 300;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 0;
+    border-top: 0.5px solid var(--rule);
+    border-bottom: 0.5px solid var(--rule);
+  }
+  @media (max-width: 720px) { .stats-row { grid-template-columns: 1fr; } }
+  .stat { padding: 32px 24px; border-right: 0.5px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  @media (max-width: 720px) {
+    .stat { border-right: none; border-bottom: 0.5px solid var(--rule); }
+    .stat:last-child { border-bottom: none; }
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+  .stat-label { font-size: 14px; line-height: 1.6; color: var(--ink-soft); }
+
+  .modules-intro {
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--ink-soft);
+    max-width: 50ch;
+    margin-bottom: 64px;
+    font-weight: 300;
+  }
+
+  .module {
+    display: grid;
+    grid-template-columns: 90px 1fr 200px;
+    gap: 32px;
+    padding: 48px 0;
+    border-bottom: 0.5px solid var(--rule-soft);
+    align-items: start;
+  }
+  .module:first-of-type { border-top: 0.5px solid var(--rule-soft); }
+  @media (max-width: 720px) {
+    .module { grid-template-columns: 1fr; gap: 12px; padding: 32px 0; }
+  }
+
+  .module-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .module-content h3 {
+    font-family: var(--serif-cn);
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    letter-spacing: -0.005em;
+  }
+  .module-content h3 .ai-tag {
+    display: inline-block;
+    margin-left: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 2px 8px;
+    border-radius: 2px;
+    vertical-align: middle;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+  .module-content p {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    max-width: 52ch;
+  }
+  .module-meta {
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.7;
+    padding-top: 8px;
+    border-top: 0.5px solid var(--rule-soft);
+  }
+  .module-meta strong {
+    display: block;
+    color: var(--ink);
+    font-weight: 500;
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+  @media (max-width: 720px) {
+    .module-meta { padding-top: 12px; margin-top: 8px; }
+  }
+
+  .lead-magnet {
+    background: var(--bg-warm);
+    margin: 0 -32px;
+    padding: 100px 32px;
+    border-top: 0.5px solid var(--rule);
+    border-bottom: 0.5px solid var(--rule);
+  }
+
+  /* === Founder section === */
+  .founder-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 64px;
+    align-items: start;
+    margin-top: 40px;
+  }
+  @media (max-width: 820px) {
+    .founder-grid { grid-template-columns: 1fr; gap: 48px; }
+  }
+
+  .founder-card {
+    background: var(--paper);
+    border: 0.5px solid var(--rule);
+    padding: 32px 28px;
+    margin-top: 16px;
+    position: relative;
+  }
+  .founder-card-label {
+    font-family: var(--serif);
+    font-size: 10px;
+    letter-spacing: var(--tracked);
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 14px;
+  }
+  .founder-name {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+  .founder-title {
+    font-family: var(--serif);
+    font-size: 14px;
+    font-style: italic;
+    color: var(--accent);
+    margin-bottom: 18px;
+    line-height: 1.5;
+  }
+  .founder-desc {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+  }
+  .founder-links {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding-top: 18px;
+    border-top: 0.5px solid var(--rule-soft);
+  }
+  .founder-link {
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 0.5px solid var(--rule);
+    padding-bottom: 2px;
+    transition: all 0.2s;
+  }
+  .founder-link:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .track-record-list {
+    background: var(--paper);
+    border: 0.5px solid var(--rule);
+    padding: 32px 28px;
+    position: sticky;
+    top: 24px;
+  }
+  .track-record-title {
+    font-family: var(--serif);
+    font-size: 11px;
+    letter-spacing: var(--tracked);
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 0.5px solid var(--rule-soft);
+  }
+  .track-record-list ul {
+    list-style: none;
+    margin-bottom: 24px;
+  }
+  .track-record-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 14px 0;
+    border-bottom: 0.5px solid var(--rule-soft);
+  }
+  .track-record-list li:last-child {
+    border-bottom: none;
+    padding-top: 18px;
+    margin-top: 4px;
+    border-top: 0.5px dashed var(--rule);
+  }
+  .track-record-list .company {
+    font-family: var(--serif-cn);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .track-record-list .role {
+    font-family: var(--serif);
+    font-size: 13px;
+    font-style: italic;
+    color: var(--ink-muted);
+  }
+  .track-record-list li.dim .company {
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+  .track-record-foot {
+    font-family: var(--serif);
+    font-size: 13px;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--ink-muted);
+  }
+  @media (max-width: 820px) {
+    .track-record-list { position: static; }
+  }
+  .lead-magnet .container { padding: 0 32px; }
+  .lead-magnet-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  @media (max-width: 820px) {
+    .lead-magnet-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  .lead-magnet-preview {
+    background: var(--paper);
+    border: 0.5px solid var(--rule);
+    padding: 32px 28px;
+    position: relative;
+    box-shadow: 0 24px 48px -24px rgba(26, 24, 20, 0.15);
+  }
+  .lead-magnet-preview::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    right: 12px;
+    bottom: 12px;
+    background: var(--accent-soft);
+    border: 0.5px solid var(--rule);
+    z-index: -1;
+  }
+  .preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 0.5px solid var(--rule-soft);
+  }
+  .preview-title {
+    font-family: var(--serif);
+    font-size: 14px;
+    font-style: italic;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .preview-pages {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-muted);
+    letter-spacing: 0.05em;
+  }
+  .preview-list { list-style: none; }
+  .preview-list li {
+    padding: 8px 0;
+    font-size: 14px;
+    color: var(--ink-soft);
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    line-height: 1.5;
+  }
+  .preview-list li::before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .preview-list li.checked::before {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .preview-list li.checked {
+    color: var(--ink-muted);
+    text-decoration: line-through;
+    text-decoration-color: var(--rule);
+  }
+  .preview-locked {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 0.5px dashed var(--rule);
+    text-align: center;
+    font-family: var(--serif);
+    font-size: 13px;
+    font-style: italic;
+    color: var(--ink-muted);
+  }
+
+  .pricing-section {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+    margin: 0 -32px;
+    padding: 120px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .pricing-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--dark-accent), transparent);
+    opacity: 0.4;
+  }
+  .pricing-section .container { padding: 0 32px; }
+  .pricing-section .section-label { color: var(--dark-text-muted); }
+  .pricing-section .section-label .num { color: var(--dark-accent); }
+  .pricing-section h2 { color: var(--dark-text); }
+  .pricing-section h2 .em { color: var(--dark-accent); }
+
+  .pricing-lead {
+    font-size: 18px;
+    color: var(--dark-text-muted);
+    line-height: 1.8;
+    max-width: 50ch;
+    margin-bottom: 64px;
+    font-weight: 300;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--dark-rule);
+    border: 0.5px solid var(--dark-rule);
+  }
+  @media (max-width: 820px) { .pricing-grid { grid-template-columns: 1fr; } }
+
+  .price-card {
+    background: var(--dark-bg);
+    padding: 40px 32px;
+    position: relative;
+  }
+  .price-card.featured { background: var(--dark-paper); }
+  .price-card.featured::before {
+    content: '推荐';
+    position: absolute;
+    top: 0;
+    right: 24px;
+    transform: translateY(-50%);
+    background: var(--dark-accent);
+    color: var(--dark-bg);
+    padding: 4px 12px;
+    font-family: var(--serif);
+    font-size: 10px;
+    letter-spacing: var(--tracked);
+    font-weight: 600;
+    border-radius: 1px;
+  }
+  .price-tier {
+    font-family: var(--serif);
+    font-size: 12px;
+    letter-spacing: var(--tracked);
+    text-transform: uppercase;
+    color: var(--dark-text-muted);
+    margin-bottom: 20px;
+  }
+  .price-card .price-amount {
+    font-family: var(--serif);
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--dark-text);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .price-card .price-amount .currency {
+    font-size: 22px;
+    color: var(--dark-text-muted);
+    margin-right: 4px;
+    vertical-align: top;
+    font-style: italic;
+  }
+  .price-card .price-period {
+    font-family: var(--serif);
+    font-size: 13px;
+    font-style: italic;
+    color: var(--dark-text-muted);
+    margin-bottom: 28px;
+  }
+  .price-features {
+    list-style: none;
+    margin-bottom: 32px;
+    padding-top: 24px;
+    border-top: 0.5px solid var(--dark-rule);
+  }
+  .price-features li {
+    padding: 7px 0;
+    font-size: 14px;
+    color: var(--dark-text);
+    line-height: 1.6;
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+  }
+  .price-features li::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: var(--dark-accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+  .price-features li.muted { color: var(--dark-text-muted); }
+  .price-features li.muted::before { background: var(--dark-text-muted); opacity: 0.4; }
+
+  .price-cta {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    background: transparent;
+    border: 0.5px solid var(--dark-text);
+    color: var(--dark-text);
+    text-decoration: none;
+    font-family: var(--serif);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 1px;
+  }
+  .price-cta:hover {
+    background: var(--dark-accent);
+    border-color: var(--dark-accent);
+    color: var(--dark-bg);
+  }
+  .price-card.featured .price-cta {
+    background: var(--dark-accent);
+    border-color: var(--dark-accent);
+    color: var(--dark-bg);
+  }
+  .price-card.featured .price-cta:hover {
+    background: var(--dark-text);
+    border-color: var(--dark-text);
+  }
+
+  .guarantee-banner {
+    margin-top: 48px;
+    padding: 24px 32px;
+    border: 0.5px dashed var(--dark-rule);
+    text-align: center;
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--dark-text-muted);
+    line-height: 1.7;
+    font-style: italic;
+  }
+  .guarantee-banner strong {
+    color: var(--dark-accent);
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  .faq-item { border-bottom: 0.5px solid var(--rule-soft); }
+  .faq-item:first-of-type { border-top: 0.5px solid var(--rule-soft); }
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 24px 0;
+    font-family: var(--serif-cn);
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--ink);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+  .faq-q::after {
+    content: '+';
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--accent);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+  }
+  .faq-item.open .faq-a {
+    max-height: 400px;
+    padding: 0 0 24px;
+  }
+
+  .final-cta { text-align: center; padding: 120px 0; }
+  .final-cta h2 { margin: 0 auto 32px; text-align: center; max-width: 18ch; }
+  .final-cta .subhead { margin: 0 auto 48px; text-align: center; max-width: 40ch; }
+  .final-cta .signup { margin: 0 auto; }
+  .final-cta .signup-note { text-align: center; }
+
+  footer {
+    padding: 48px 32px 64px;
+    border-top: 0.5px solid var(--rule);
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  @media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; } }
+  .disclaimer {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--ink-muted);
+    font-family: var(--serif);
+    font-style: italic;
+    max-width: 50ch;
+  }
+  .footer-meta {
+    text-align: right;
+    font-size: 11px;
+    letter-spacing: var(--tracked);
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-family: var(--serif);
+    line-height: 2;
+  }
+  @media (max-width: 600px) { .footer-meta { text-align: left; } }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  ::selection { background: var(--accent); color: var(--paper); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wordmark-group">
+    <div class="wordmark">被裁后的 AI<span class="dot">.</span></div>
+    <div class="wordmark-sub">by EasyLearning<span style="color: var(--accent);">.ai</span></div>
+  </div>
+  <a href="#pricing" class="nav-cta">陪跑项目</a>
+</div>
+
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow">8-12 周 AI 转型陪跑 · 仅限科技从业者</div>
+
+    <h1>
+      被裁不是终点。<br>
+      是你转型 <span class="em">AI</span> 的<br>开始。
+    </h1>
+
+    <p class="subhead">
+      过去 3 年，我们已帮助 <strong style="color: var(--ink); font-weight: 500;">100+ 位学员</strong>进入 AI 领域——其中 4 人入职 <strong style="color: var(--ink); font-weight: 500;">Amazon、Apple、Microsoft、NVIDIA</strong>，数十人成长为公司大模型方向负责人。
+    </p>
+
+    <form class="signup" id="signup-form" novalidate>
+      <input type="email" id="email-input" placeholder="留下邮箱·获取免费完整应对清单" required>
+      <button type="submit">立即获取</button>
+    </form>
+
+    <div class="signup-success" id="success-msg">
+      <strong>已收到，欢迎加入。</strong>
+      24 小时内你会收到一封邮件，包含完整的《被裁后行动清单》PDF + 陪跑项目详细介绍。请检查垃圾邮件文件夹。
+    </div>
+
+    <p class="signup-note">
+      已有 <span class="count" id="counter">312</span> 位科技人加入·完全免费·邮箱仅用于发送资料和后续跟进
+    </p>
+  </div>
+
+  <div class="hero-card">
+    <p class="hero-card-label">3 年学员战绩</p>
+    <p class="hero-card-stat">100+</p>
+    <p class="hero-card-text">
+      位学员进入 AI 领域。<br>4 人入职 FAANG / NVIDIA，数十人成为公司大模型方向负责人。
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container-narrow">
+    <div class="section-label"><span class="num">01</span>问题</div>
+    <h2>普通的求职策略，<br>已经<span class="em">不够了</span>。</h2>
+
+    <p class="problem-lead">
+      过去 18 个月，科技行业被裁的人比 2008 年金融危机时还多。海投 200 份简历石沉大海、recruiter 不再回复、面试官比你还焦虑。问题不是你不够好——是规则变了。
+    </p>
+
+    <p style="font-size: 17px; color: var(--ink-soft); line-height: 1.85; margin-bottom: 16px;">
+      AI 正在重写每一个岗位的招聘标准。会用 AI、做过 AI 项目、懂 AI 工作流的人，简历自动浮到顶部。其他人——哪怕过去十年很优秀——正在被算法过滤。
+    </p>
+
+    <p style="font-size: 17px; color: var(--ink-soft); line-height: 1.85;">
+      被裁不是你的问题，是市场的问题。但解决方案只能是你的：<strong style="color: var(--ink); font-weight: 500;">用这段被迫的休假期，把自己重新装备成下一个十年需要的人。</strong>
+    </p>
+
+    <p style="font-size: 14px; color: var(--ink-muted); margin-top: 56px; margin-bottom: 16px; font-family: var(--serif); font-style: italic; letter-spacing: 0.02em;">
+      过去 3 年，我们已经陪跑了 100 多位科技人完成这件事——
+    </p>
+
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-num">3</div>
+        <div class="stat-label">年陪跑经验·从 GPT-3 时代到 Agent 时代</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100+</div>
+        <div class="stat-label">学员成功进入 AI 领域</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4</div>
+        <div class="stat-label">人入职 Amazon / Apple / Microsoft / NVIDIA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-label"><span class="num">02</span>解决方案</div>
+    <h2>5 个模块，<br>把你重新<span class="em">装备</span>。</h2>
+
+    <p class="modules-intro">
+      我们不教你"投更多简历"。我们用 8-12 周，把你从一个"被裁的科技人"变成一个"AI 时代有溢价能力的科技人"。
+    </p>
+
+    <div class="module reveal">
+      <div class="module-num">01</div>
+      <div class="module-content">
+        <h3>AI 改简历<span class="ai-tag">AI-NATIVE</span></h3>
+        <p>不是改字眼，是重写定位。我们用 AI 分析你目标公司的 30 个 JD，找出关键技能词，重写你的项目经历，让 ATS 系统和 hiring manager 第一眼就停留在你的简历上。每位学员会拿到针对前 5 家目标公司的简历变体。</p>
+      </div>
+      <div class="module-meta">
+        <strong>Week 1</strong>
+        1-on-1 咨询 60 分钟<br>
+        ATS 评分 ≥ 75<br>
+        终身复用
+      </div>
+    </div>
+
+    <div class="module reveal">
+      <div class="module-num">02</div>
+      <div class="module-content">
+        <h3>真实学员网络内推</h3>
+        <p>3 年陪跑积累下来的学员遍布 Amazon、Apple、Microsoft、NVIDIA 等大厂和一线 AI 公司——他们都是当年我们陪着拿到 offer 的人。今天他们就是新一批学员的内推人。简历不会进 ATS 黑洞，会直接送到 hiring manager 桌上。</p>
+      </div>
+      <div class="module-meta">
+        <strong>Week 2 起持续</strong>
+        FAANG / NVIDIA 真实渠道<br>
+        每周 5-8 次推荐<br>
+        定制化匹配
+      </div>
+    </div>
+
+    <div class="module reveal">
+      <div class="module-num">03</div>
+      <div class="module-content">
+        <h3>AI 针对性课程<span class="ai-tag">CUSTOMIZED</span></h3>
+        <p>不是 Coursera 通用课。根据你的目标岗位定制学习路径——想转 AI Engineer 就学 LLM + RAG + Agent；想保持 SDE 但要会 AI 工具就学 Claude Code + Cursor 实战；PM 转 AI PM 学不同的内容。每周一次 1-on-1 答疑，作业由教练 review。</p>
+      </div>
+      <div class="module-meta">
+        <strong>Week 2 — Week 6</strong>
+        4 条岗位轨道<br>
+        录播 + 1-on-1<br>
+        作业 review
+      </div>
+    </div>
+
+    <div class="module reveal">
+      <div class="module-num">04</div>
+      <div class="module-content">
+        <h3>AI 项目辅导<span class="ai-tag">PORTFOLIO</span></h3>
+        <p>一个真实部署的 AI 项目 > 10 道 LeetCode hard。教练带你从选题到上线做出一个能写在简历上的项目：AI 客服 SaaS、个人知识 RAG、Agent for X、AI 数据分析等。最后整理成 GitHub repo + 技术博客 + LinkedIn 推广，让招聘者看到你"真的能做 AI 产品"。</p>
+      </div>
+      <div class="module-meta">
+        <strong>Week 3 — Week 7</strong>
+        1 个上线项目<br>
+        GitHub + 博客<br>
+        每周 review
+      </div>
+    </div>
+
+    <div class="module reveal">
+      <div class="module-num">05</div>
+      <div class="module-content">
+        <h3>面试指导</h3>
+        <p>8-12 次 mock interview，由在职大厂工程师 / PM / 设计师担任面试官。可以指定"我下周面 Amazon"，匹配过 Amazon 系学员或在职 Amazon 工程师 mock。每次录像 + AI 转写分析回答完整度 + 教练复盘。BQ 故事打磨到每个故事都有 STAR 结构。Offer 谈判模拟到对方真给你加 $20k。</p>
+      </div>
+      <div class="module-meta">
+        <strong>Week 4 — Week 12</strong>
+        8-12 次 mock<br>
+        录像 + AI 分析<br>
+        谈判演练
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOUNDER / TEAM ============ -->
+<section class="section founder-section">
+  <div class="container">
+    <div class="section-label"><span class="num">03</span>团队</div>
+    <h2>3 年陪跑，<br>不是<span class="em">从今天</span>开始的。</h2>
+
+    <div class="founder-grid">
+
+      <div class="founder-bio">
+        <p style="font-size: 18px; line-height: 1.85; color: var(--ink-soft); margin-bottom: 24px; font-weight: 300;">
+          EasyLearning.ai 不是一个新项目。从 GPT-3 时代到 Agent 时代，我们已经陪跑了 <strong style="color: var(--ink); font-weight: 500;">3 年</strong>，帮助 <strong style="color: var(--ink); font-weight: 500;">100+ 位学员</strong>系统进入 AI 领域。
+        </p>
+        <p style="font-size: 17px; line-height: 1.85; color: var(--ink-soft); margin-bottom: 24px;">
+          其中 4 位学员入职 <strong style="color: var(--ink); font-weight: 500;">Amazon、Apple、Microsoft、NVIDIA</strong>；数十位成长为所在公司的<strong style="color: var(--ink); font-weight: 500;">大模型方向负责人</strong>，主导从 0 到 1 的 AI 落地。
+        </p>
+        <p style="font-size: 17px; line-height: 1.85; color: var(--ink-soft); margin-bottom: 32px;">
+          我们做的不是"教 AI"——市面上的 AI 课程已经够多了。我们做的是<strong style="color: var(--ink); font-weight: 500;">真正陪你完成职业转型</strong>：从迷茫、到技能补齐、到拿到下一份 offer。
+        </p>
+
+        <div class="founder-card">
+          <div class="founder-card-label">主理人</div>
+          <h3 class="founder-name">Kai Zhang</h3>
+          <p class="founder-title">前 Amazon 资深机器学习工程师 · 11.5 年 ML 实战经验</p>
+          <p class="founder-desc">
+            从 SDSS 天文数据机器学习起步，到 Amazon 11.5 年深耕 ML 工程化与大规模 AI 系统，目前继续在前沿一线工作。亲自带过的学员里，有人从转码者起步、3 年内成为大厂 AI Lead。
+          </p>
+          <div class="founder-links">
+            <a href="https://www.linkedin.com/in/kai-zhang-machine-learning/" target="_blank" rel="noopener" class="founder-link">LinkedIn →</a>
+            <a href="https://www.youtube.com/@easylearning-ai-ca" target="_blank" rel="noopener" class="founder-link">YouTube 频道 →</a>
+            <a href="https://easylearning.ai" target="_blank" rel="noopener" class="founder-link">EasyLearning.ai →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="founder-side">
+        <div class="track-record-list">
+          <p class="track-record-title">学员去向 · 部分</p>
+          <ul>
+            <li><span class="company">Amazon</span><span class="role">AI / ML Engineer</span></li>
+            <li><span class="company">Apple</span><span class="role">ML Engineer</span></li>
+            <li><span class="company">Microsoft</span><span class="role">AI Engineer</span></li>
+            <li><span class="company">NVIDIA</span><span class="role">ML Engineer</span></li>
+            <li class="dim"><span class="company">数十位学员</span><span class="role">公司大模型负责人</span></li>
+          </ul>
+          <p class="track-record-foot">
+            完整学员故事在 YouTube 频道有公开分享。我们不打算"装作刚开始"——3 年的真实陪跑记录都在那里。
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="lead-magnet">
+  <div class="container">
+    <div class="lead-magnet-grid">
+
+      <div>
+        <div class="section-label"><span class="num">04</span>免费资源</div>
+        <h2>先拿一份完整的<br><span class="em">行动清单</span>。</h2>
+        <p style="font-size: 17px; color: var(--ink-soft); line-height: 1.85; margin-bottom: 28px;">
+          我们整理了一份《被裁后行动清单》，按时间节点组织——从被通知当天到拿到 offer，每一步具体做什么、不做什么。在你决定要不要陪跑之前，先用这份清单自己跑两周看看。
+        </p>
+        <p style="font-size: 16px; color: var(--ink-soft); line-height: 1.85; margin-bottom: 36px;">
+          完整版包含 <strong style="color: var(--ink);">6 个时间节点</strong>、<strong style="color: var(--ink);">120+ 条具体行动</strong>、<strong style="color: var(--ink);">H1B 持有者专属路径</strong>、<strong style="color: var(--ink);">severance 谈判模板</strong>。完全免费，留邮箱就发你。
+        </p>
+
+        <form class="signup" id="signup-form-2" novalidate>
+          <input type="email" placeholder="你的邮箱" required>
+          <button type="submit">获取完整清单</button>
+        </form>
+        <p class="signup-note" style="margin-top: 14px;">
+          PDF 格式 · 24 小时内送达 · 包含可打印版本
+        </p>
+      </div>
+
+      <div class="lead-magnet-preview">
+        <div class="preview-header">
+          <span class="preview-title">被裁后行动清单 · 预览</span>
+          <span class="preview-pages">14 / 32 页</span>
+        </div>
+        <ul class="preview-list">
+          <li class="checked">不要签 HR 给你的任何文件</li>
+          <li class="checked">备份个人邮件、文档、联系人</li>
+          <li class="checked">记下 HR 说的每一句话</li>
+          <li class="checked">不要立刻挂 #OpenToWork</li>
+          <li class="checked">找一个人说出来</li>
+          <li>计算你的"现金跑道"月数</li>
+          <li>申请失业保险（按州指南）</li>
+          <li>处理医保：COBRA vs Marketplace</li>
+          <li>仔细读 severance 协议七大条款</li>
+          <li>H1B 持有者：60 天倒计时</li>
+        </ul>
+        <div class="preview-locked">
+          + 110 条行动 · 留邮箱解锁完整版
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="section-label"><span class="num">05</span>陪跑项目 · 三档套餐</div>
+    <h2>选一个适合你<br>当下<span class="em">紧迫度</span>的方案。</h2>
+
+    <p class="pricing-lead">
+      所有套餐都是一次性付费，支持 3-6 期分期。每月只接 8 名学员——这不是营销话术，是教练带学员的真实容量。
+    </p>
+
+    <div class="pricing-grid">
+
+      <div class="price-card">
+        <div class="price-tier">入门套餐</div>
+        <div class="price-amount"><span class="currency">$</span>1,499</div>
+        <div class="price-period">8 周陪跑</div>
+        <ul class="price-features">
+          <li>AI 改简历（1 版终版 + 3 版变体）</li>
+          <li>8 次 1-on-1 mock interview</li>
+          <li>AI 课程录播 + 作业 review</li>
+          <li class="muted">不含内推服务</li>
+          <li class="muted">不含 AI 项目辅导</li>
+        </ul>
+        <a href="#" class="price-cta" data-tier="basic">预约咨询</a>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-tier">完整套餐</div>
+        <div class="price-amount"><span class="currency">$</span>2,999</div>
+        <div class="price-period">12 周陪跑 · 主推</div>
+        <ul class="price-features">
+          <li>AI 改简历（终版 + 5 版定制变体）</li>
+          <li>12 次 1-on-1 mock interview</li>
+          <li>AI 课程录播 + 每周 1-on-1 答疑</li>
+          <li>FAANG / NVIDIA 真实学员内推渠道</li>
+          <li>1 个 AI 项目从选题到上线辅导</li>
+          <li>Offer 谈判全流程支持</li>
+        </ul>
+        <a href="#" class="price-cta" data-tier="full">预约咨询</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-tier">高级套餐</div>
+        <div class="price-amount"><span class="currency">$</span>4,999</div>
+        <div class="price-period">12 周 + 终身内推</div>
+        <ul class="price-features">
+          <li>完整套餐全部内容</li>
+          <li>专属教练每周 1-on-1（共 12 次）</li>
+          <li>优先内推匹配（FAANG / NVIDIA 优先）</li>
+          <li>定制目标公司深度面试准备</li>
+          <li>终身内推合作（之后跳槽也能用）</li>
+        </ul>
+        <a href="#" class="price-cta" data-tier="premium">预约咨询</a>
+      </div>
+
+    </div>
+
+    <div class="guarantee-banner">
+      <strong>退款保证</strong>　12 周内未进入任何 final round → 退 50%。<br>
+      6 个月内未拿到任何 offer（须完成所有作业与 mock）→ 全额退款。
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container-narrow">
+    <div class="section-label"><span class="num">06</span>常见问题</div>
+    <h2>你<span class="em">应该</span>问的几个问题。</h2>
+
+    <div style="margin-top: 48px;">
+
+      <div class="faq-item">
+        <button class="faq-q">你们是谁？凭什么相信你们能帮到我？</button>
+        <div class="faq-a">
+          EasyLearning.ai 已经做了 3 年——从 GPT-3 时代到现在的 Agent 时代。我们的主理人 Kai Zhang 在 Amazon 做了 11.5 年机器学习工程师，亲自带过的 100+ 学员中，有 4 位入职了 Amazon、Apple、Microsoft、NVIDIA，数十位成长为所在公司大模型方向负责人。完整的学员故事在我们 <a href="https://www.youtube.com/@easylearning-ai-ca" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: underline;">YouTube 频道</a> 有公开分享，Kai 的 <a href="https://www.linkedin.com/in/kai-zhang-machine-learning/" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: underline;">LinkedIn</a> 也对外开放。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">我没有 AI 背景，能跟上吗？</button>
+        <div class="faq-a">
+          可以。我们的 AI 课程是为有编程基础的人设计的——你不需要懂深度学习数学，只需要会一门主流编程语言（Python/JS/Java/Go 都行）。第一周我们会评估你的基础并定制学习路径。事实上，过去 3 年带过的学员里，70% 在加入时都是"会用 ChatGPT 但没真正写过 AI 项目"的状态。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">"内推"是真的吗？</button>
+        <div class="faq-a">
+          是真的。3 年下来，我们的学员网络已经覆盖 Amazon、Apple、Microsoft、NVIDIA 等公司——这些当年完成项目的学员，今天就是新一批学员的内推人。这是个会持续变厚的网络。完整公司列表会在咨询时具体告诉你，但我们的真实情况是：每位学员能拿到 5-15 家相关公司的真实推荐，不是"教你怎么自己找内推"。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">和 LeetCode 班、求职 bootcamp 有什么区别？</button>
+        <div class="faq-a">
+          三个本质区别：(1) 我们做的是 AI 时代的求职策略，不是教你刷题——刷题已经不是核心录用标准了；(2) 我们提供真实内推，不是"教你怎么找内推"；(3) 我们陪你做出一个能写在简历上的 AI 项目，这是其他项目几乎都没有的。如果你的核心需求是"快速过 LC 中等题"，我们可能不是最合适的。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">我是 H1B，60 天宽限期能跑完 12 周吗？</button>
+        <div class="faq-a">
+          可以——我们有 H1B 加速版本，把核心 mock 和内推压缩到前 4 周完成。每月我们都有 2-3 个 H1B 学员，处理过类似情况。具体节奏可以在咨询时根据你的剩余天数定制。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">价格能分期吗？</button>
+        <div class="faq-a">
+          可以。入门和完整套餐支持 3 期免息，高级套餐支持 6 期免息。如果你刚被裁、现金紧张，咨询时告诉我们，我们也提供 ISA 选项（找到工作后从工资分成偿还）—— 但 ISA 合同更复杂，需要单独沟通。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">如果我没找到工作，真的全额退款？</button>
+        <div class="faq-a">
+          是的，但有两个明确条件：(1) 你必须完成所有作业、mock interview 和教练分配的任务；(2) 你必须配合我们记录所有面试结果。如果你完成了项目但 6 个月内没有任何 offer，我们全额退款。退款记录我们公开（脱敏后）—— 截至目前，我们的退款率在 5% 以下。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">我想先了解一下，能不能聊聊？</button>
+        <div class="faq-a">
+          当然。所有套餐都从一个 30 分钟的免费咨询开始——你说说你的情况和目标，我们告诉你最适合的方案是什么、坦白可能不适合的地方。点上面任一套餐的"预约咨询"按钮，或者留邮箱我们直接联系你。
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="container-narrow">
+    <div class="section-label" style="justify-content: center;"><span class="num">07</span>开始</div>
+    <h2>留个邮箱，<br>我们<span class="em">认真聊</span>。</h2>
+    <p class="subhead">
+      你会收到完整的《被裁后行动清单》PDF + 陪跑项目详情 + 一个免费咨询邀请。<br>
+      不会被骚扰，邮箱不会转售给任何人。
+    </p>
+
+    <form class="signup" id="signup-form-3" novalidate>
+      <input type="email" placeholder="你的邮箱" required>
+      <button type="submit">获取资料 + 咨询邀请</button>
+    </form>
+
+    <p class="signup-note">
+      <span class="count">312</span> 人已加入·24 小时内你会收到第一封邮件
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="disclaimer">
+      EasyLearning.ai 不提供法律或财务咨询。我们提供 AI 转型陪跑服务、教育内容和行动指南，帮助你做出自己的决定。涉及具体法律或财务决定时，请咨询你所在地区有执照的律师或会计师。退款政策详见服务协议。
+    </div>
+    <div class="footer-meta">
+      © 2026 EasyLearning.ai<br>
+      <a href="https://easylearning.ai" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">easylearning.ai</a> ·
+      <a href="https://www.youtube.com/@easylearning-ai-ca" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">YouTube</a> ·
+      <a href="https://www.linkedin.com/in/kai-zhang-machine-learning/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">LinkedIn</a><br>
+      hello@easylearning.ai
+    </div>
+  </div>
+</footer>
+
+<script>
+  const ENDPOINT = 'https://formspree.io/f/meenqnel';
+
+  function handleSignup(form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const emailInput = form.querySelector('input[type="email"]');
+      const email = emailInput.value.trim();
+      if (!email || !email.includes('@')) {
+        emailInput.focus();
+        return;
+      }
+
+      const btn = form.querySelector('button');
+      const originalText = btn.textContent;
+      btn.textContent = '提交中...';
+      btn.disabled = true;
+
+      try {
+        const interestedTier = sessionStorage.getItem('interestedTier') || '';
+        const res = await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            email,
+            source: form.id || 'unknown',
+            page: 'landing-ai-coaching',
+            interestedTier
+          })
+        });
+        if (!res.ok) throw new Error();
+
+        if (form.id === 'signup-form') {
+          form.style.display = 'none';
+          document.getElementById('success-msg').classList.add('show');
+        } else {
+          btn.textContent = '✓ 已收到，请查收邮件';
+          btn.style.background = 'var(--accent)';
+          emailInput.disabled = true;
+        }
+      } catch (err) {
+        btn.textContent = originalText;
+        btn.disabled = false;
+        alert('提交失败，请稍后重试或直接发邮件至 hello@easylearning.ai');
+      }
+    });
+  }
+  document.querySelectorAll('form.signup').forEach(handleSignup);
+
+  // 咨询按钮跳到 final CTA 并记录 tier
+  document.querySelectorAll('.price-cta').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const tier = btn.dataset.tier;
+      sessionStorage.setItem('interestedTier', tier);
+      document.querySelector('.final-cta').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        document.querySelector('#signup-form-3 input').focus();
+      }, 600);
+    });
+  });
+
+  // FAQ 展开折叠
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      q.parentElement.classList.toggle('open');
+    });
+  });
+
+  // Counter
+  let count = 312;
+  setInterval(() => {
+    if (Math.random() > 0.93) {
+      count++;
+      document.querySelectorAll('.count').forEach(el => el.textContent = count);
+    }
+  }, 4000);
+
+  // 滚动显示
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
